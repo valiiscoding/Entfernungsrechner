@@ -1,9 +1,9 @@
-package com.example.entfernungsrechner;
+package com.example.entfernungsrechner.infrastructure;
 
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface HaltestellenDB extends CrudRepository<Haltestelle, Long> {
-    Optional<Haltestelle> findByDS100(String ds100);
+public interface HaltestellenDB extends CrudRepository<Haltestelle_Entity, Long> {
+    Optional<Haltestelle_Entity> findByDS100(String ds100);
 }

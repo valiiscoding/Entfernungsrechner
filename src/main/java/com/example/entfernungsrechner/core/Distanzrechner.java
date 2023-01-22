@@ -1,7 +1,7 @@
-package com.example.entfernungsrechner;
+package com.example.entfernungsrechner.core;
 
 public class Distanzrechner {
-    private static final double R = 6372.8; // In kilometers
+    private static final double R = 6372.8;
 
     public static Long berechneDistanzInKM(Double lat1, Double lon1, Double lat2, Double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);

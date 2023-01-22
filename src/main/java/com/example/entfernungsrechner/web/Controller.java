@@ -1,6 +1,7 @@
-package com.example.entfernungsrechner;
+package com.example.entfernungsrechner.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.entfernungsrechner.core.Entfernung;
+import com.example.entfernungsrechner.core.EntfernungsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

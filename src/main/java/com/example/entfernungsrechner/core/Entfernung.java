@@ -1,4 +1,4 @@
-package com.example.entfernungsrechner;
+package com.example.entfernungsrechner.core;
 
 import lombok.Builder;
 import lombok.Getter;

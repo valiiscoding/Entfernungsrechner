@@ -13,26 +13,35 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "haltestelle")
-public class Haltestelle {
+public class Haltestelle_Entity {
     @Id
     @Column
     private Long EVA_NR;
+
     @Column
     private String DS100;
+
     @Column
     private String IFOPT;
+
     @Column
     private String NAME;
+
     @Column
     private String VERKEHR;
+
     @Column
     private Double Laenge;
+
     @Column
     private Double Breite;
+
     @Column
     private String Betreiber_Name;
+
     @Column
     private Long Betreiber_Nr;
+
     @Column
     private String Status;
 

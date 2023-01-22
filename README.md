@@ -1,27 +1,38 @@
-# Getting Started
+# Entfernungsrechner für Fernverkehrsbahnhöfe
 
 ### Reference Documentation
 
-For further reference, please consider the following sections:
+Die API umfasst einen GET-Request:
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.0.2/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.0.2/gradle-plugin/reference/html/#build-image)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#data.sql.jpa-and-spring-data)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.0.2/reference/htmlsingle/#web)
+```
+GET /api/v1/distance/FF/BLS
+```
 
-### Guides
+Antwort:
 
-The following guides illustrate how to use some features concretely:
+```
+{
+"from": "Frankfurt(Main)Hbf",
+"to": "Berlin Hbf",
+"distance": 423,
+"unit": "km"
+}
+```
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+Antwort bei GET-Request mit ungültigem Bahnhof
 
-### Additional Links
+```
+GET /api/v1/distance/BLS/KLN
+```
 
-These additional references should also help you:
+Antwort:
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+```
+{
+    "timestamp": "2023-01-22T22:51:23.243+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "Haltestelle DS100='KLN' unbekannt oder kein Fernverkehrsbahnhof.",
+    "path": "/api/v1/distance/BLS/KLN"
+}
+```
