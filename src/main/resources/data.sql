@@ -1,2 +1,13 @@
-INSERT INTO HALTESTELLE (EVA_NR, DS100, IFOPT, NAME, VERKEHR, Laenge, Breite, Betreiber_Name, Betreiber_Nr, Status)
-VALUES (23, 'DS100', 'IFOPT', 'NAME', 'VERKEHR', 2.2, 3.3, 'valle', 23, 'OK');
+INSERT INTO haltestelle (EVA_NR, DS100, IFOPT, NAME, Verkehr, Laenge, Breite, Betreiber_Name, Betreiber_Nr, Status)
+SELECT EVA_NR,
+       DS100,
+       IFOPT,
+       NAME,
+       Verkehr,
+       REPLACE(Laenge, ',', '.'),
+       REPLACE(Breite, ',', '.'),
+       Betreiber_Name,
+       Betreiber_Nr,
+       Status
+FROM CSVREAD('src/main/resources/D_Bahnhof_2020_alle.csv', NULL, 'fieldSeparator=;')
+where Verkehr = 'FV';
