@@ -1,4 +1,4 @@
-package com.example.entfernungsrechner.core;
+package com.example.entfernungsrechner.core.helper;
 
 public class Distanzrechner {
     private static final double R = 6372.8;

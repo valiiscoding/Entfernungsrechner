@@ -1,7 +1,7 @@
 package com.example.entfernungsrechner.web;
 
 import com.example.entfernungsrechner.core.Entfernung;
-import com.example.entfernungsrechner.core.EntfernungsService;
+import com.example.entfernungsrechner.core.services.EntfernungsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

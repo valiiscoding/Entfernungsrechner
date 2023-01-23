@@ -2,7 +2,23 @@
 
 ### Reference Documentation
 
-Die API umfasst einen GET-Request:
+Die Web-Anwendung ist größtenteils in der Onion-Architektur implementiert. Natürlich ist dies für eine so kleine
+Web-Anwendung noch nicht notwendig, verbessert aber z.B. Wartbarkeit und Erweiterbarkeit.
+
+Die API umfasst einen GET-Request, bei dem zwei Fernverkehrsbahnhöfe mit DS100 Kürzel angegeben werden müssen:
+
+### Endpunkte
+
+Berechnen der Entfernung zwischen zwei Fernverkehrsbahnhöfen:
+
+* URL: `/api/v1/distance/{from}/{to}`
+* Methode: GET
+* Parameter:
+    * `from`: DS100-Kürzel eines FV-Bahnhofs (erforderlich)
+    * `to`: DS100-Kürzel eines FV-Bahnhofs (erforderlich)
+
+* Rückgabewerte:
+    * Erfolgreicher Request:
 
 ```
 GET /api/v1/distance/FF/BLS
@@ -12,14 +28,16 @@ Antwort:
 
 ```
 {
-"from": "Frankfurt(Main)Hbf",
-"to": "Berlin Hbf",
-"distance": 423,
-"unit": "km"
+  "from": "Frankfurt(Main)Hbf",
+  "to": "Berlin Hbf",
+  "distance": 423,
+  "unit": "km"
 }
 ```
 
-Antwort bei GET-Request mit ungültigem Bahnhof
+* Fehlerhafter Request
+
+Antwort bei GET-Request mit ungültigem Bahnhof ('KLN')
 
 ```
 GET /api/v1/distance/BLS/KLN
