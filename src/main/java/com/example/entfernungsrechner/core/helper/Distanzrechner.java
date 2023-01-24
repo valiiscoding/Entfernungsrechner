@@ -3,7 +3,7 @@ package com.example.entfernungsrechner.core.helper;
 public class Distanzrechner {
     private static final double R = 6372.8;
 
-    public static Long berechneDistanzInKM(Double lat1, Double lon1, Double lat2, Double lon2) {
+    public static Long berechneDistanzInKM(double lat1, double lon1, double lat2, double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         lat1 = Math.toRadians(lat1);

@@ -1,13 +1,13 @@
 package com.example.entfernungsrechner.infrastructure;
 
-import com.example.entfernungsrechner.core.Haltestelle;
-import com.example.entfernungsrechner.core.IHaltestelleRepository;
+import com.example.entfernungsrechner.core.repo_abstractions.IHaltestellenRepository;
+import com.example.entfernungsrechner.core.entities.Haltestelle;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public class HaltestellenRepositoryImpl implements IHaltestelleRepository {
+public class HaltestellenRepositoryImpl implements IHaltestellenRepository {
 
     private final HaltestellenCrudRepository haltestellenRepository;
 
@@ -16,19 +16,7 @@ public class HaltestellenRepositoryImpl implements IHaltestelleRepository {
     }
 
     @Override
-    public Optional<Haltestelle> getHaltestelleByDS100(String ds100) {
-        Optional<Haltestelle_Entity> haltestelle = haltestellenRepository.findByDS100IgnoreCase(ds100);
-        if (haltestelle.isEmpty())
-            return Optional.empty();
-
-        Haltestelle build = Haltestelle.builder()
-                .breite(haltestelle.get().getBreite())
-                .laenge(haltestelle.get().getLaenge())
-                .ds100(haltestelle.get().getDS100())
-                .evaNr(haltestelle.get().getEVA_NR())
-                .name(haltestelle.get().getNAME())
-                .build();
-
-        return Optional.of(build);
+    public Optional<Haltestelle> getHaltestelleByDs100(String ds100) {
+        return haltestellenRepository.findByDs100IgnoreCase(ds100);
     }
 }
