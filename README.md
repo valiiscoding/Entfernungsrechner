@@ -2,7 +2,7 @@
 
 ### Kurzdokumentation
 
-Die API berechnet die Entfernung (in Kilometern) zwischen zwei Fernverkehrsbahnhöfen in Deutschland anhand ihrer
+Die API berechnet die Entfernung (in KM) zwischen zwei Fernverkehrsbahnhöfen in Deutschland anhand ihrer
 DS100-Kürzel.
 
 Die Architektur der API orientiert sich grob an einer Onion-Architektur (nicht sehr streng eingehalten).
@@ -12,8 +12,7 @@ darstellen und höchstwahrscheinlich nicht aktualisiert werden unter selbigem Li
 nur die Fernverkehrsbahnhöfe für eine bessere Query-Performance, da es weniger Einträge gibt (Nachteil: ungenauere
 Fehlermeldungen).
 
-Die Tests arbeiten mit einer Kopie der CSV-Datei aus 2020. (Es wäre nicht sinnvoll die Tests an eine Datei zu koppeln,
-die sich verändern kann.)
+Die Tests arbeiten mit einer Kopie der CSV-Datei aus 2020.
 
 ### Endpunkte
 
@@ -51,7 +50,7 @@ Antwort bei GET-Request mit ungültigem DS-100 Code (z.B. 'KLN')
 GET /api/v1/distance/BLS/KLN
 ```
 
-Antwort:
+Antwort (kann sich unterscheiden, wenn von Browser aufgerufen):
 
 ```
 {
@@ -69,7 +68,7 @@ Antwort bei GET-Request zu undefiniertem Endpunkt:
 GET /api/v1/distance/BLS
 ```
 
-Antwort:
+Antwort (kann sich unterscheiden, wenn von Browser aufgerufen):
 
 ```
 {

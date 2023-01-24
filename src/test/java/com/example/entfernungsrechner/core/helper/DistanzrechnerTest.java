@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 public class DistanzrechnerTest {
 
     private static final long DISTANCE_FF_TO_BLS_KM = 423;
-
-
+    
     @Test
     void testeBerechneDistanz() {
         //Frankfurt (Main)HBF
