@@ -19,6 +19,11 @@ public class DistanceService {
         this.iStationRepository = iStationRepository;
     }
 
+    /**
+     * @param from DS100 code of a long-distance train station
+     * @param to   DS100 code of long-distance train station
+     * @return Distance object containing distance between 'from' and 'to'
+     */
     public Distance getDistanceBetween(String from, String to) {
         Optional<Station> halt1_opt = iStationRepository.getStationByDs100(from);
         Optional<Station> halt2_opt = iStationRepository.getStationByDs100(to);

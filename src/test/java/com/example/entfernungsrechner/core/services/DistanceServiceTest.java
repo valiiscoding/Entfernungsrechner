@@ -96,16 +96,23 @@ public class DistanceServiceTest {
     void emptyDS100Code() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween("FF", "")).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
+    }
 
+    @Test
+    void emptyDS100Code2() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween(null, "FF")).isInstanceOf(ResponseStatusException.class)
-                .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
-
-        assertThatThrownBy(() -> distanceService.getDistanceBetween("FF", null)).isInstanceOf(ResponseStatusException.class)
-                .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
-
-        assertThatThrownBy(() -> distanceService.getDistanceBetween(null, null)).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
     }
 
+    @Test
+    void emptyDS100Code3() {
+        assertThatThrownBy(() -> distanceService.getDistanceBetween("FF", null)).isInstanceOf(ResponseStatusException.class)
+                .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
+    }
 
+    @Test
+    void emptyDS100Code4() {
+        assertThatThrownBy(() -> distanceService.getDistanceBetween(null, null)).isInstanceOf(ResponseStatusException.class)
+                .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
+    }
 }

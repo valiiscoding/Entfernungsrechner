@@ -19,9 +19,15 @@ public class Controller {
         this.distanceService = distanceService;
     }
 
-    @GetMapping(value = "/distance/{from}/{to}")
-    public ResponseEntity<Distance> entfernung(@PathVariable String from, @PathVariable String to) {
-        Distance distance = distanceService.getDistanceBetween(from, to);
+    /**
+     * @param fromDS100 Path variable (should contain DS100 code of long-distance train station)
+     * @param toDS100   Path variable (should contain DS100 code of long-distance train station)
+     * @return Distance object as JSON, if valid DS100 codes
+     * if one of the path variables are not valid DS100 codes, exceptions throw
+     */
+    @GetMapping(value = "/distance/{fromDS100}/{toDS100}")
+    public ResponseEntity<Distance> entfernung(@PathVariable String fromDS100, @PathVariable String toDS100) {
+        Distance distance = distanceService.getDistanceBetween(fromDS100, toDS100);
         return new ResponseEntity<>(distance, HttpStatus.OK);
     }
 }
