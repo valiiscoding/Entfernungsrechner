@@ -4,10 +4,12 @@ public class DistanceCalculator {
     private static final double R = 6372.8;
 
     /**
-     * @param lat1 Latitude of the first location
-     * @param lon1 Longitude of the first location
-     * @param lat2 Latitude of the second location
-     * @param lon2 Longitude of the second location
+     * Haversine formula
+     *
+     * @param lat1 Latitude of the first location in WGS84 (in decimal degrees)
+     * @param lon1 Longitude of the first location in WGS84 (in decimal degrees)
+     * @param lat2 Latitude of the second location in WGS84 (in decimal degrees)
+     * @param lon2 Longitude of the second location in WGS84 (in decimal degrees)
      * @return rounded distance in kilometres
      */
     public static Long calcDistanceInKM(double lat1, double lon1, double lat2, double lon2) {

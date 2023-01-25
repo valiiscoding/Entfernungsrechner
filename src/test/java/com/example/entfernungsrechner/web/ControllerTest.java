@@ -22,7 +22,7 @@ public class ControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void testGetDistance() throws Exception {
+    void testGetDistanceDifferentStations() throws Exception {
         mockMvc.perform(get("/api/v1/distance/FF/BLS")).andExpect(status().isOk())
                 .andExpect(content().json("{" +
                         "'from': 'Frankfurt(Main)Hbf'," +
@@ -32,7 +32,7 @@ public class ControllerTest {
     }
 
     @Test
-    void testGetDistance2() throws Exception {
+    void testGetDistanceDifferentStations2() throws Exception {
         mockMvc.perform(get("/api/v1/distance/BFBI/KB")).andExpect(status().isOk())
                 .andExpect(content().json("{" +
                         "'from':'Flughafen BER - Terminal 1-2'," +
@@ -55,6 +55,13 @@ public class ControllerTest {
     @Test
     void testExceptionMessageIsReturned() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/api/v1/distance/FF/KLJHB")).andReturn();
+
+        assertThat(mvcResult.getResponse().getErrorMessage()).containsIgnoringCase("'KLJHB' unknown");
+    }
+
+    @Test
+    void testExceptionMessageIsReturned2() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/api/v1/distance/KLJHB/FF")).andReturn();
 
         assertThat(mvcResult.getResponse().getErrorMessage()).containsIgnoringCase("'KLJHB' unknown");
     }
