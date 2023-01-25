@@ -20,7 +20,7 @@ public class DistanceServiceTest {
     DistanceService distanceService;
 
     /**
-     * Das gemockte Repository kennt drei Bahnhöfe.
+     * Add 3 stations to the mocked repository
      */
     @BeforeEach
     void setup() {
@@ -31,20 +31,25 @@ public class DistanceServiceTest {
                 .thenReturn(Optional.empty());
 
         Mockito.when(iStationRepository.getStationByDs100("FF")).thenReturn(
-                Optional.of(Station.builder().ds100("FF").evaNr(8000105L).latitude(50.107145).longitude(8.663789)
-                        .name("Frankfurt(Main)Hbf").build())
+                Optional.of(Station.builder().evaNr(8000105L).operatorName("DB Station und Service AG").operatorNr(1866L)
+                        .latitude(50.107145).longitude(8.663789).ds100("FF").ifOpt("de:06412:10")
+                        .name("Frankfurt(Main)Hbf").status(null).traffic("FV").build())
         );
         Mockito.when(iStationRepository.getStationByDs100("BLS")).thenReturn(Optional.of(
-                Station.builder().ds100("BLS").evaNr(8011160L).latitude(52.525592).longitude(13.369545).name("Berlin Hbf").build())
+                Station.builder().ds100("BLS").evaNr(8011160L).latitude(52.525592).longitude(13.369545).name("Berlin Hbf")
+                        .operatorName("DB Station und Service AG\t").operatorNr(1071L).ifOpt("de:11000:900003201")
+                        .status(null).traffic("FV").build())
         );
         Mockito.when(iStationRepository.getStationByDs100("KB")).thenReturn(Optional.of(
-                Station.builder().ds100("KB").evaNr(8000044L).latitude(50.732008).longitude(7.097136).name("Bonn Hbf").build())
+                Station.builder().ds100("KB").evaNr(8000044L).latitude(50.732008).longitude(7.097136).name("Bonn Hbf")
+                        .operatorName("DB Station und Service AG").operatorNr(767L).ifOpt("de:05314:61101")
+                        .status(null).traffic("FV").build())
         );
 
     }
 
     @Test
-    void testeServiceBerechnetEntfernung() {
+    void testGetDistanceBetween() {
         Distance distance = distanceService.getDistanceBetween("FF", "BLS");
 
         assertThat(distance).isEqualTo(
@@ -53,7 +58,7 @@ public class DistanceServiceTest {
     }
 
     @Test
-    void testeServiceBerechnetEntfernung2() {
+    void testGetDistanceBetween2() {
         Distance distance = distanceService.getDistanceBetween("BLS", "KB");
 
         assertThat(distance).isEqualTo(
@@ -70,25 +75,25 @@ public class DistanceServiceTest {
     }
 
     @Test
-    void ungueltigerBahnhof1() {
+    void unknownStation() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween("FF", "unbekannt")).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
     }
 
     @Test
-    void ungueltigerBahnhof2() {
+    void unknownStation2() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween("test", "FF")).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
     }
 
     @Test
-    void ungueltigerBahnhof3() {
+    void unknownStation3() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween("unbekannt", "unbekannt2")).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
     }
 
     @Test
-    void leererDS100Code() {
+    void emptyDS100Code() {
         assertThatThrownBy(() -> distanceService.getDistanceBetween("FF", "")).isInstanceOf(ResponseStatusException.class)
                 .extracting(ex -> ((ResponseStatusException) ex).getStatusCode().is4xxClientError()).isEqualTo(true);
 

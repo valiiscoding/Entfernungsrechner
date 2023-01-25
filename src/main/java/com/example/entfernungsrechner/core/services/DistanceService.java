@@ -15,8 +15,8 @@ public class DistanceService {
 
     private final IStationRepository iStationRepository;
 
-    public DistanceService(IStationRepository haltestelleRepository) {
-        this.iStationRepository = haltestelleRepository;
+    public DistanceService(IStationRepository iStationRepository) {
+        this.iStationRepository = iStationRepository;
     }
 
     public Distance getDistanceBetween(String from, String to) {
@@ -25,10 +25,10 @@ public class DistanceService {
 
         //Fehlerüberprüfung
         if (halt1_opt.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Haltestelle DS100='" + from + "' unbekannt oder kein Fernverkehrsbahnhof.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Station DS100='" + from + "' unknown or no long-distance train station.");
         }
         if (halt2_opt.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Haltestelle DS100='" + to + "' unbekannt oder kein Fernverkehrsbahnhof.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Station DS100='" + to + "' unknown or no long-distance train station.");
         }
 
         Station halt1 = halt1_opt.get();

@@ -9,7 +9,7 @@ public class DistanceCalculatorTest {
     private static final long DISTANCE_FF_TO_BLS_KM = 423;
 
     @Test
-    void testeBerechneDistanz() {
+    void testCalcDistanceInKM() {
         //Frankfurt (Main)HBF
         double lat1 = 50.107145;
         double lon1 = 8.663789;
@@ -24,7 +24,7 @@ public class DistanceCalculatorTest {
     }
 
     @Test
-    void testeBerechneDistanzSelberBahnhof() {
+    void testCalcDistanceInKMSameStationReturns0() {
         //Frankfurt (Main)HBF
         double lat1 = 50.107145;
         double lon1 = 8.663789;

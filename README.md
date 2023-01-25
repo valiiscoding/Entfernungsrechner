@@ -54,10 +54,10 @@ Antwort (kann sich unterscheiden, wenn von Browser aufgerufen):
 
 ```
 {
-    "timestamp": "2023-01-22T22:51:23.243+00:00",
+    "timestamp": "2023-01-25T14:38:19.054+00:00",
     "status": 400,
     "error": "Bad Request",
-    "message": "Haltestelle DS100='KLN' unbekannt oder kein Fernverkehrsbahnhof.",
+    "message": "Station DS100='KLN' unknown or no long-distance train station.",
     "path": "/api/v1/distance/BLS/KLN"
 }
 ```

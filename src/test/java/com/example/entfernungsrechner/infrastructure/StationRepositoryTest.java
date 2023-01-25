@@ -20,7 +20,6 @@ public class StationRepositoryTest {
     void testAttributeAssignment() {
         Optional<Station> ff = iStationRepository.getStationByDs100("FF");
 
-
         assertThat(ff).isPresent();
         assertThat(ff.get()).isEqualTo(Station.builder()
                 .evaNr(8000105L)

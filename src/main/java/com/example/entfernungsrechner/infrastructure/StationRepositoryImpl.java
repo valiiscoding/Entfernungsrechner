@@ -9,14 +9,14 @@ import java.util.Optional;
 @Repository
 public class StationRepositoryImpl implements IStationRepository {
 
-    private final StationCrudRepository haltestellenRepository;
+    private final StationCrudRepository stationCrudRepository;
 
-    public StationRepositoryImpl(StationCrudRepository haltestellenRepository) {
-        this.haltestellenRepository = haltestellenRepository;
+    public StationRepositoryImpl(StationCrudRepository stationCrudRepository) {
+        this.stationCrudRepository = stationCrudRepository;
     }
 
     @Override
     public Optional<Station> getStationByDs100(String ds100) {
-        return haltestellenRepository.findByDs100IgnoreCase(ds100);
+        return stationCrudRepository.findByDs100IgnoreCase(ds100);
     }
 }
