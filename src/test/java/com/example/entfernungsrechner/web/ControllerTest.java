@@ -60,7 +60,6 @@ public class ControllerTest {
         MvcResult mvcResult = mockMvc.perform(get("/api/v1/distance/FF/KLJHB")).andReturn();
 
         assertThat(mvcResult.getResponse().getErrorMessage()).containsIgnoringCase("'KLJHB' unbekannt");
-
     }
 
     @Test

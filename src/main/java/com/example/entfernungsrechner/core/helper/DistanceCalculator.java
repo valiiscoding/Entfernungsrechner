@@ -1,9 +1,9 @@
 package com.example.entfernungsrechner.core.helper;
 
-public class Distanzrechner {
+public class DistanceCalculator {
     private static final double R = 6372.8;
 
-    public static Long berechneDistanzInKM(double lat1, double lon1, double lat2, double lon2) {
+    public static Long calcDistanceInKM(double lat1, double lon1, double lat2, double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
         lat1 = Math.toRadians(lat1);

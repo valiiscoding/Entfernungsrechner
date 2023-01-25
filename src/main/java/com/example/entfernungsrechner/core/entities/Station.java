@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "haltestelle")
-public class Haltestelle {
+public class Station {
     @Id
     @Column(name = "EVA_NR")
     private Long evaNr;
@@ -30,19 +30,19 @@ public class Haltestelle {
     private String name;
 
     @Column(name = "VERKEHR")
-    private String verkehr;
+    private String traffic;
 
     @Column(name = "Laenge")
-    private Double laenge;
+    private Double longitude;
 
     @Column(name = "Breite")
-    private Double breite;
+    private Double latitude;
 
     @Column(name = "Betreiber_Name")
-    private String betreiberName;
+    private String operatorName;
 
     @Column(name = "Betreiber_Nr")
-    private Long betreiberNr;
+    private Long operatorNr;
 
     @Column(name = "Status")
     private String status;

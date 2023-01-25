@@ -1,7 +1,7 @@
 package com.example.entfernungsrechner.web;
 
-import com.example.entfernungsrechner.core.Entfernung;
-import com.example.entfernungsrechner.core.services.EntfernungsService;
+import com.example.entfernungsrechner.core.Distance;
+import com.example.entfernungsrechner.core.services.DistanceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class Controller {
 
-    private final EntfernungsService entfernungsService;
+    private final DistanceService distanceService;
 
-    public Controller(EntfernungsService entfernungsService) {
-        this.entfernungsService = entfernungsService;
+    public Controller(DistanceService distanceService) {
+        this.distanceService = distanceService;
     }
 
     @GetMapping(value = "/distance/{from}/{to}")
-    public ResponseEntity<Entfernung> entfernung(@PathVariable String from, @PathVariable String to) {
-        Entfernung entfernung = entfernungsService.berechneDistanz(from, to);
-        return new ResponseEntity<>(entfernung, HttpStatus.OK);
+    public ResponseEntity<Distance> entfernung(@PathVariable String from, @PathVariable String to) {
+        Distance distance = distanceService.getDistanceBetween(from, to);
+        return new ResponseEntity<>(distance, HttpStatus.OK);
     }
 }

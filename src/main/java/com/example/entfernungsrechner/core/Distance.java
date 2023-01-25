@@ -7,7 +7,7 @@ import lombok.Getter;
 @Builder
 @Getter
 @EqualsAndHashCode
-public class Entfernung {
+public class Distance {
     private String from;
     private String to;
     private Long distance;
