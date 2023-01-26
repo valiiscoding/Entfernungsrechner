@@ -32,6 +32,16 @@ public class ControllerTest {
     }
 
     @Test
+    void testGetDistanceDifferentStationsMixedCaseAndNotTrimmed() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/ Ff / blS ")).andExpect(status().isOk())
+                .andExpect(content().json("{" +
+                        "'from': 'Frankfurt(Main)Hbf'," +
+                        "'to': 'Berlin Hbf'," +
+                        "'distance': 423," +
+                        "'unit': 'km'}"));
+    }
+
+    @Test
     void testGetDistanceDifferentStations2() throws Exception {
         mockMvc.perform(get("/api/v1/distance/BFBI/KB")).andExpect(status().isOk())
                 .andExpect(content().json("{" +
@@ -42,8 +52,19 @@ public class ControllerTest {
     }
 
     @Test
-    void testGetDistanceSameStation() throws Exception {
-        mockMvc.perform(get("/api/v1/distance/KB/KB")).andExpect(status().isOk())
+    void testGetDistanceDifferentStationsMixedCaseUntrimmed() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/ Bfbi /   kB ")).andExpect(status().isOk())
+                .andExpect(content().json("{" +
+                        "'from':'Flughafen BER - Terminal 1-2'," +
+                        "'to':'Bonn Hbf'," +
+                        "'distance':479," +
+                        "'unit':'km'}"));
+    }
+
+
+    @Test
+    void testGetDistanceSameStationLowerCase() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/kb/KB")).andExpect(status().isOk())
                 .andExpect(content().json("{" +
                         "'from':'Bonn Hbf'," +
                         "'to':'Bonn Hbf'," +
@@ -95,6 +116,7 @@ public class ControllerTest {
         mockMvc.perform(get("/api/v1/distance/FF1/FF"))
                 .andExpect(status().isNotFound());
     }
+
     @Test
     void testNumberAsPathVarNotFound2() throws Exception {
         mockMvc.perform(get("/api/v1/distance/FF/FF1"))
@@ -106,14 +128,16 @@ public class ControllerTest {
         mockMvc.perform(get("/api/v1/distance/FF/FFHDSKK"))
                 .andExpect(status().isNotFound());
     }
+
     @Test
     void testMoreThan6LettersAsPathVarNotFound2() throws Exception {
         mockMvc.perform(get("/api/v1/distance/FFIUGOK/FF"))
                 .andExpect(status().isNotFound());
     }
+
     @Test
     void testLessThanTwoLettersAsPathVar() throws Exception {
-        mockMvc.perform(get("/api/v1/distance/FFIUGOK/F"))
+        mockMvc.perform(get("/api/v1/distance/BLS/F"))
                 .andExpect(status().isNotFound());
     }
 }

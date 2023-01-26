@@ -61,7 +61,6 @@ public class StationRepositoryTest {
 
     @Test
     void testInvalidDS100SubstringOfOtherDS100() {
-        //
         Optional<Station> ff = iStationRepository.getStationByDs100("H  N");
 
         assertThat(ff).isEmpty();

@@ -23,7 +23,7 @@ public class Controller {
     /**
      * @param fromDS100 Path variable (should contain DS100 code of long-distance train station)
      * @param toDS100   Path variable (should contain DS100 code of long-distance train station)
-     *                  Only allowed values are A-Z and space. 2-6 characters allowed per path variable
+     *                  Only allowed values are A-Z, a-z and space. 2-6 characters allowed per path variable
      *                  Everything else leads to a 404 error.
      * @return Distance object as JSON, if valid DS100 codes
      * if one of the path variables are not valid DS100 codes, exceptions throw

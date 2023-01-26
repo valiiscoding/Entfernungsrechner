@@ -25,7 +25,6 @@ public class DistanceService {
      * @return Distance object containing distance between 'from' and 'to'
      */
     public Distance getDistanceBetween(String from, String to) {
-
         Optional<Station> halt1_opt = iStationRepository.getStationByDs100(from);
         Optional<Station> halt2_opt = iStationRepository.getStationByDs100(to);
 

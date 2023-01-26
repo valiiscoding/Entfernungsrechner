@@ -10,11 +10,10 @@ import java.util.Optional;
 public interface StationCrudRepository extends CrudRepository<Station, Long> {
 
     /**
-     *
      * @param value
      * @return station, where ds100 is
      */
-    @Query(value = "select * from haltestelle where ds100 = :value or " +
+    @Query(value = "select * from haltestelle where DS100 = :value or " +
             "DS100 like CONCAT('%,', :value) or " +
             "DS100 like CONCAT(:value,',%') or " +
             "DS100 like CONCAT('%,',:value,',%')"
