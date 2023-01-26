@@ -68,25 +68,52 @@ public class ControllerTest {
 
     @Test
     void testUnknownStationReturnsBadRequest() throws Exception {
-        mockMvc.perform(get("/api/v1/distance/FF/KLJHB"))
+        mockMvc.perform(get("/api/v1/distance/FF/KLQ"))
                 .andExpect(status().isBadRequest()).andReturn();
     }
 
     @Test
     void testUnknownStationReturnsBadRequest2() throws Exception {
-        mockMvc.perform(get("/api/v1/distance/unbekannt/BLS"))
+        mockMvc.perform(get("/api/v1/distance/KLQ/BLS"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void testUnknownStationReturnsBadRequest3() throws Exception {
-        mockMvc.perform(get("/api/v1/distance/unbekannt/unbekannt"))
+        mockMvc.perform(get("/api/v1/distance/KLQ/KLQ"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void testIllegalRouteReturnsNotFound() throws Exception {
         mockMvc.perform(get("/api/v1/distance/FF"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testNumberAsPathVarNotFound() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/FF1/FF"))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    void testNumberAsPathVarNotFound2() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/FF/FF1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void testMoreThan6LettersAsPathVarNotFound() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/FF/FFHDSKK"))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    void testMoreThan6LettersAsPathVarNotFound2() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/FFIUGOK/FF"))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    void testLessThanTwoLettersAsPathVar() throws Exception {
+        mockMvc.perform(get("/api/v1/distance/FFIUGOK/F"))
                 .andExpect(status().isNotFound());
     }
 }

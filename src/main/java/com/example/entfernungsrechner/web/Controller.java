@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/api/v1")
 public class Controller {
@@ -22,12 +23,14 @@ public class Controller {
     /**
      * @param fromDS100 Path variable (should contain DS100 code of long-distance train station)
      * @param toDS100   Path variable (should contain DS100 code of long-distance train station)
+     *                  Only allowed values are A-Z and space. 2-6 characters allowed per path variable
+     *                  Everything else leads to a 404 error.
      * @return Distance object as JSON, if valid DS100 codes
      * if one of the path variables are not valid DS100 codes, exceptions throw
      */
-    @GetMapping(value = "/distance/{fromDS100}/{toDS100}")
+    @GetMapping(value = "/distance/{fromDS100:[A-Z a-z]{2,6}}/{toDS100:[A-Z a-z]{2,6}}")
     public ResponseEntity<Distance> entfernung(@PathVariable String fromDS100, @PathVariable String toDS100) {
-        Distance distance = distanceService.getDistanceBetween(fromDS100, toDS100);
+        Distance distance = distanceService.getDistanceBetween(fromDS100.toUpperCase().trim(), toDS100.toUpperCase().trim());
         return new ResponseEntity<>(distance, HttpStatus.OK);
     }
 }

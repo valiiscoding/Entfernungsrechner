@@ -35,5 +35,37 @@ public class StationRepositoryTest {
                 .build());
     }
 
+    @Test
+    void testAttributeWithMultipleDS100Codes_Left() {
+        Optional<Station> ff = iStationRepository.getStationByDs100("FH");
+
+        assertThat(ff).isPresent();
+        assertThat(ff.get().getEvaNr()).isEqualTo(8000150L);
+    }
+
+    @Test
+    void testAttributeWithMultipleDS100Codes_Right() {
+        Optional<Station> ff = iStationRepository.getStationByDs100("FH  S");
+
+        assertThat(ff).isPresent();
+        assertThat(ff.get().getEvaNr()).isEqualTo(8000150L);
+    }
+
+    @Test
+    void testAttributeWithMultipleDS100Codes_Middle() {
+        Optional<Station> ff = iStationRepository.getStationByDs100("FH  N");
+
+        assertThat(ff).isPresent();
+        assertThat(ff.get().getEvaNr()).isEqualTo(8000150L);
+    }
+
+    @Test
+    void testInvalidDS100SubstringOfOtherDS100() {
+        //
+        Optional<Station> ff = iStationRepository.getStationByDs100("H  N");
+
+        assertThat(ff).isEmpty();
+    }
+
 
 }
