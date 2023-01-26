@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 public class DistanceCalculatorTest {
 
-    private static final long DISTANCE_FF_TO_BLS_KM = 423;
-
     @Test
     void testCalcDistanceInKM() {
         //Frankfurt (Main)HBF
@@ -20,8 +18,24 @@ public class DistanceCalculatorTest {
 
         Long distance = DistanceCalculator.calcDistanceInKM(lat1, lon1, lat2, lon2);
 
-        assertThat(distance).isEqualTo(DISTANCE_FF_TO_BLS_KM);
+        assertThat(distance).isEqualTo(423);
     }
+
+    @Test
+    void testCalcDistanceInKM2() {
+        //Hannover Hbf
+        double lat1 = 52.376761;
+        double lon1 = 9.741021;
+
+        //Berlin HBF
+        double lat2 = 52.525592;
+        double lon2 = 13.369545;
+
+        Long distance = DistanceCalculator.calcDistanceInKM(lat1, lon1, lat2, lon2);
+
+        assertThat(distance).isEqualTo(246L);
+    }
+
 
     @Test
     void testCalcDistanceInKMSameStationReturns0() {
@@ -31,7 +45,7 @@ public class DistanceCalculatorTest {
 
         Long distance = DistanceCalculator.calcDistanceInKM(lat1, lon1, lat1, lon1);
 
-        assertThat(distance).isEqualTo(0);
+        assertThat(distance).isEqualTo(0L);
     }
 
 }
