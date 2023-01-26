@@ -27,7 +27,7 @@ public class StationRepositoryTest {
                 .operatorNr(1866L)
                 .latitude(50.107145)
                 .longitude(8.663789)
-                .ds100("FF")
+                .ds100(",FF,")
                 .ifOpt("de:06412:10")
                 .name("Frankfurt(Main)Hbf")
                 .status(null)

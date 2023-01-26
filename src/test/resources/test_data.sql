@@ -1,6 +1,6 @@
 INSERT INTO haltestelle (EVA_NR, DS100, IFOPT, NAME, Verkehr, Laenge, Breite, Betreiber_Name, Betreiber_Nr, Status)
 SELECT EVA_NR,
-       DS100,
+       CONCAT(',', DS100, ','),
        IFOPT,
        NAME,
        Verkehr,
