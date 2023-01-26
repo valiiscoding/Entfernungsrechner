@@ -1,13 +1,12 @@
 package com.example.entfernungsrechner.core.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -20,8 +19,9 @@ public class Station {
     @Column(name = "EVA_NR")
     private Long evaNr;
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "DS100")
-    private String ds100;
+    private List<String> ds100;
 
     @Column(name = "IFOPT")
     private String ifOpt;
@@ -46,5 +46,6 @@ public class Station {
 
     @Column(name = "Status")
     private String status;
+
 
 }

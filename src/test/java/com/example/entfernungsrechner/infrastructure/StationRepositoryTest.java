@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,21 +20,24 @@ public class StationRepositoryTest {
 
     @Test
     void testAttributeAssignment() {
-        Optional<Station> ff = iStationRepository.getStationByDs100("FF");
+        Optional<Station> frankfurt = iStationRepository.getStationByDs100("FF");
+        assertThat(frankfurt).isPresent();
 
-        assertThat(ff).isPresent();
-        assertThat(ff.get()).isEqualTo(Station.builder()
+        frankfurt.get().setDs100(frankfurt.get().getDs100().stream().toList());
+        assertThat(frankfurt.get()).isEqualTo(Station.builder()
                 .evaNr(8000105L)
                 .operatorName("DB Station und Service AG")
                 .operatorNr(1866L)
                 .latitude(50.107145)
                 .longitude(8.663789)
-                .ds100(",FF,")
+                .ds100(List.of("FF"))
                 .ifOpt("de:06412:10")
                 .name("Frankfurt(Main)Hbf")
                 .status(null)
                 .traffic("FV")
                 .build());
+
+        assertThat(frankfurt.get().getDs100()).isEqualTo(List.of("FF"));
     }
 
     @Test

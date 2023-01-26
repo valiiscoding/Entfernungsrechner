@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,16 +34,16 @@ public class DistanceServiceTest {
 
         Mockito.when(iStationRepository.getStationByDs100("FF")).thenReturn(
                 Optional.of(Station.builder().evaNr(8000105L).operatorName("DB Station und Service AG").operatorNr(1866L)
-                        .latitude(50.107145).longitude(8.663789).ds100("FF").ifOpt("de:06412:10")
+                        .latitude(50.107145).longitude(8.663789).ds100(List.of("FF")).ifOpt("de:06412:10")
                         .name("Frankfurt(Main)Hbf").status(null).traffic("FV").build())
         );
         Mockito.when(iStationRepository.getStationByDs100("BLS")).thenReturn(Optional.of(
-                Station.builder().ds100("BLS").evaNr(8011160L).latitude(52.525592).longitude(13.369545).name("Berlin Hbf")
+                Station.builder().ds100(List.of("BLS")).evaNr(8011160L).latitude(52.525592).longitude(13.369545).name("Berlin Hbf")
                         .operatorName("DB Station und Service AG\t").operatorNr(1071L).ifOpt("de:11000:900003201")
                         .status(null).traffic("FV").build())
         );
         Mockito.when(iStationRepository.getStationByDs100("KB")).thenReturn(Optional.of(
-                Station.builder().ds100("KB").evaNr(8000044L).latitude(50.732008).longitude(7.097136).name("Bonn Hbf")
+                Station.builder().ds100(List.of("KB")).evaNr(8000044L).latitude(50.732008).longitude(7.097136).name("Bonn Hbf")
                         .operatorName("DB Station und Service AG").operatorNr(767L).ifOpt("de:05314:61101")
                         .status(null).traffic("FV").build())
         );

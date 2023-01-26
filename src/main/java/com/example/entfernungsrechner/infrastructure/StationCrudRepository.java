@@ -1,18 +1,15 @@
 package com.example.entfernungsrechner.infrastructure;
 
 import com.example.entfernungsrechner.core.entities.Station;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
 public interface StationCrudRepository extends CrudRepository<Station, Long> {
 
     /**
-     * @param value
-     * @return station, where ds100 is
+     * @param ds100 DS100 code (in upper case and trimmed)
+     * @return station, which has ds100 code
      */
-    @Query(value = "select * from haltestelle where DS100 like CONCAT('%,',:value,',%') ", nativeQuery = true)
-    Optional<Station> findByDs100IgnoreCase(@Param("value") String value);
+    Optional<Station> findByDs100Contains(String ds100);
 }

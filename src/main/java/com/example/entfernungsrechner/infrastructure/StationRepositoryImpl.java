@@ -17,6 +17,6 @@ public class StationRepositoryImpl implements IStationRepository {
 
     @Override
     public Optional<Station> getStationByDs100(String ds100) {
-        return stationCrudRepository.findByDs100IgnoreCase(ds100);
+        return stationCrudRepository.findByDs100Contains(ds100);
     }
 }
