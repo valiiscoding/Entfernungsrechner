@@ -29,7 +29,7 @@ public class Controller {
      * if one of the path variables are not valid DS100 codes, exceptions throw
      */
     @GetMapping(value = "/distance/{fromDS100:[A-Z a-z]{2,6}}/{toDS100:[A-Z a-z]{2,6}}")
-    public ResponseEntity<Distance> entfernung(@PathVariable String fromDS100, @PathVariable String toDS100) {
+    public ResponseEntity<Distance> distanceFromTo(@PathVariable String fromDS100, @PathVariable String toDS100) {
         Distance distance = distanceService.getDistanceBetween(fromDS100.toUpperCase().trim(), toDS100.toUpperCase().trim());
         return new ResponseEntity<>(distance, HttpStatus.OK);
     }
