@@ -22,9 +22,9 @@ Berechnen der Entfernung zwischen zwei Fernverkehrsbahnhöfen:
 * URL: `/api/v1/distance/{from}/{to}`
 * Methode: GET
 * Parameter:
-    * `from`: DS100-Kürzel eines FV-Bahnhofs (erforderlich) (Muss 2-6 Buchstaben (A-Z) enthalten -> sonst 404 NOT
+    * `from`: DS100-Kürzel eines FV-Bahnhofs (erforderlich) (Muss 2-6 Buchstaben (A-Z und Leerzeichen) enthalten -> sonst 404 NOT
       FOUND.)
-    * `to`: DS100-Kürzel eines FV-Bahnhofs (erforderlich) (Muss 2-6 Buchstaben (A-Z) enthalten -> sonst 404 NOT FOUND.)
+    * `to`: DS100-Kürzel eines FV-Bahnhofs (erforderlich) (Muss 2-6 Buchstaben (A-Z und Leerzeichen) enthalten -> sonst 404 NOT FOUND.)
 
 * Rückgabewerte:
     * Erfolgreicher Request:
