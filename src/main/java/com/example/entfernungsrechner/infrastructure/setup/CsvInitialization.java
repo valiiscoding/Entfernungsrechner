@@ -27,9 +27,6 @@ public class CsvInitialization {
         this.stationCrudRepository = stationCrudRepository;
     }
 
-    /**
-     * @throws IOException
-     */
     @PostConstruct
     public void readCsvInRepository() throws IOException {
         Reader in = new FileReader(csv_path);
