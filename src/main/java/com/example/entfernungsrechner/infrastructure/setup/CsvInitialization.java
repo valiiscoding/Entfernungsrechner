@@ -3,39 +3,36 @@ package com.example.entfernungsrechner.infrastructure.setup;
 import com.example.entfernungsrechner.core.entities.Station;
 import com.example.entfernungsrechner.infrastructure.StationCrudRepository;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
-import org.springframework.stereotype.Repository;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.UUID;
 
 
-@Repository
+@Component
 public class CsvInitialization {
 
     private final StationCrudRepository stationCrudRepository;
+
+    @Value("${csv_path}")
+    private String csv_path;
 
     public CsvInitialization(StationCrudRepository stationCrudRepository) {
         this.stationCrudRepository = stationCrudRepository;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
+    /**
+     * @throws IOException
+     */
+    @PostConstruct
     public void readCsvInRepository() throws IOException {
-        Reader in = new FileReader("src/main/resources/D_Bahnhof_2020_alle.csv");
+        Reader in = new FileReader(csv_path);
 
         Iterable<CSVRecord> records = CSVFormat.EXCEL.builder().setDelimiter(';')
                 .setIgnoreHeaderCase(true)
