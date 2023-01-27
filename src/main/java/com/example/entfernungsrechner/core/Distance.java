@@ -1,15 +1,13 @@
 package com.example.entfernungsrechner.core;
 
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Value;
 
 @Builder
-@Getter
-@EqualsAndHashCode
+@Value
 public class Distance {
-    private String from;
-    private String to;
-    private Long distance;
-    private String unit;
+    String from;
+    String to;
+    Long distance;
+    String unit;
 }
